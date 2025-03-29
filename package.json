@@ -5,12 +5,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
-    "start": "tsc && node dist/main.js"
+    "start": "tsc && node dist/main.js",
+    "classify": "tsc && node dist/classifier/playground.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@huggingface/transformers": "^3.4.1",
+    "@tensorflow/tfjs": "^4.22.0",
     "better-sqlite3": "^11.9.1",
     "dotenv": "^16.4.7",
     "telegram": "^2.26.22",
