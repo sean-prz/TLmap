@@ -1,0 +1,23 @@
+{
+  "name": "tlmap-ts",
+  "version": "1.0.0",
+  "main": "src/telegram/createSession.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start": "tsc && node dist/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "dotenv": "^16.4.7",
+    "telegram": "^2.26.22",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.14"
+  }
+}
