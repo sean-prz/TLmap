@@ -7,10 +7,10 @@ import {
 import path from "node:path";
 
 
-export async function loadTokenizer() : Promise<PreTrainedTokenizer> {
+async function loadTokenizer() : Promise<PreTrainedTokenizer> {
     return AutoTokenizer.from_pretrained('distilbert-base-uncased');
 }
-export async function loadModel(): Promise<PreTrainedModel> {
+async function loadModel(): Promise<PreTrainedModel> {
     const modelPath = path.resolve(__dirname, '../../model_onnx');
     return AutoModelForSequenceClassification.from_pretrained(modelPath,
         {local_files_only: true}

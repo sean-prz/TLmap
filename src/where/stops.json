@@ -1,0 +1,35 @@
+[
+  {"name": "Cerisae", "line": "M1"},
+  {"name": "Renens, Gare", "line": "M1"},
+  {"name": "Renens", "line": "M1"},
+  {"name": "Epenex", "line": "M1"},
+  {"name": "Crochy", "line": "M1"},
+  {"name": "Cerisaie", "line": "M1"},
+  {"name": "Bassenges", "line": "M1"},
+  {"name": "EPFL", "line": "M1"},
+  {"name": "UNIL-Sorge", "line": "M1"},
+
+  {"name": "UNIL-Mouline", "line": "M1"},
+  {"name": "UNIL-Chamberone", "line": "M1"},
+  {"name": "Bourdonnette", "line": "M1"},
+  {"name": "Malley", "line": "M1"},
+  {"name": "Provence", "line": "M1"},
+  {"name": "Montelly", "line": "M1"},
+  {"name": "Vigie", "line": "M1"},
+  {"name": "Flon", "line": "M1"},
+
+
+  {"name": "Flon", "line": "M2"},
+  {"name": "Ouchy", "line": "M2"},
+  {"name": "Jordils", "line": "M2"},
+  {"name": "Délices", "line": "M2"},
+  {"name": "Grancy", "line": "M2"},
+  {"name": "Riponne", "line": "M2"},
+  {"name": "Bessières", "line": "M2"},
+  {"name": "Ours", "line": "M2"},
+  {"name": "CHUV", "line": "M2"},
+  {"name": "Sallaz", "line": "M2"},
+  {"name": "Fourmi", "line": "M2"},
+  {"name": "Vennes", "line": "M2"},
+  {"name": "Croisettes", "line": "M2"}
+]

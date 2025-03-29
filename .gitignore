@@ -5,3 +5,4 @@ node_modules/
 model/
 model_onnx/
 .DS_Store
+db.sqlite

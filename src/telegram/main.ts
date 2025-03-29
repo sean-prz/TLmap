@@ -4,6 +4,8 @@ import { NewMessage, NewMessageEvent} from "telegram/events";
 import dotenv from 'dotenv';
 dotenv.config()
 import Database from 'better-sqlite3';
+import {predict} from "../classifier/classifier";
+import {where} from "../where/where";
 
 const db = new Database('db.sqlite', { verbose: console.log });
 const apiId = Number(process.env["TELEGRAM_API_ID"])!
@@ -23,7 +25,7 @@ export async function main() {
         chats : ["-4268347199", "-1001445992030"]
     }));
     // create a table with two columns one for timestamp one for message
-    db.prepare('CREATE TABLE IF NOT EXISTS messages (timestamp INTEGER, message TEXT)').run();
+    db.prepare('CREATE TABLE IF NOT EXISTS messages (timestamp INTEGER, message TEXT, relevant BOOLEAN, stop TEXT NULL)').run();
 }
 
 
@@ -31,9 +33,16 @@ export async function main() {
 
 // define the event handler
 async function eventPrint(event : NewMessageEvent) {
-    console.log(event)
-    console.log(event.chatId)
     const message  = event.message;
-    console.log(message.message);
-    db.prepare('INSERT INTO messages (timestamp, message) VALUES (?, ?)').run([message.date, message.message]);
+    // triage with claassifier
+   const prediction =  await predict(message.message)
+    if (prediction == 0) {
+        console.log("Message : ", message.message + " classed as non-relevant")
+        db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ?, null)').run([message.date, message.message, 0]);
+        return
+    }
+    // find the best stop
+    const stop = where(message.message)
+    console.log("Message : ", message.message + " classed as : ", stop)
+    db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ? , ?)').run([message.date, message.message, 1, stop.name]);
 }

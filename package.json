@@ -16,6 +16,7 @@
     "@tensorflow/tfjs": "^4.22.0",
     "better-sqlite3": "^11.9.1",
     "dotenv": "^16.4.7",
+    "levenshtein-edit-distance": "^3.0.1",
     "telegram": "^2.26.22",
     "typescript": "^5.8.2"
   },
