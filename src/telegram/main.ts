@@ -44,6 +44,6 @@ async function eventPrint(event : NewMessageEvent) {
     }
     // find the best stop
     const stop = where(message.message)
-    logger.info("Message : " + message.message + " classed as : " +  stop)
+    logger.info("Message : '" + message.message + "'" +  " classed as : " +  stop.name)
     db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ? , ?)').run([message.date, message.message, 1, stop.name]);
 }
