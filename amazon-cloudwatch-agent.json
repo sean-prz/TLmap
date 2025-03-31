@@ -1,0 +1,19 @@
+{
+  "agent": {
+    "run_as_user": "root"
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "./out.log",
+            "log_group_name": "/my-node-app/production",
+            "log_stream_name": "{instance_id}/pm2-out",
+            "timestamp_format": "%Y-%m-%dT%H:%M:%S.%fZ"
+          }
+        ]
+      }
+    }
+  }
+}

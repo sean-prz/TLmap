@@ -8,3 +8,4 @@ model_onnx/
 db.sqlite
 MacbookKey.pem
 src/classifier/index.ts
+out.log
