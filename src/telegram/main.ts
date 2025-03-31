@@ -38,12 +38,12 @@ async function eventPrint(event : NewMessageEvent) {
     // triage with claassifier
    const prediction =  await predict(message.message)
     if (prediction == 0) {
-        logger.info("Message : ", message.message + " classed as non-relevant")
+        logger.info("Message : " + message.message + " classed as non-relevant")
         db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ?, null)').run([message.date, message.message, 0]);
         return
     }
     // find the best stop
     const stop = where(message.message)
-    logger.info("Message : ", message.message + " classed as : ", stop)
+    logger.info("Message : " + message.message + " classed as : " +  stop)
     db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ? , ?)').run([message.date, message.message, 1, stop.name]);
 }
