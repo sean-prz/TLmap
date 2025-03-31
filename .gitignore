@@ -6,3 +6,5 @@ model/
 model_onnx/
 .DS_Store
 db.sqlite
+MacbookKey.pem
+src/classifier/index.ts

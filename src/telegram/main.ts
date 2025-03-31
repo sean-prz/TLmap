@@ -6,8 +6,9 @@ dotenv.config()
 import Database from 'better-sqlite3';
 import {predict} from "../classifier/classifier";
 import {where} from "../where/where";
+import logger from "../logger/logger";
 
-const db = new Database('db.sqlite', { verbose: console.log });
+const db = new Database('db.sqlite');
 const apiId = Number(process.env["TELEGRAM_API_ID"])!
 const apiHash = process.env["TELEGRAM_API_HASH"]!
 const stringSession = new StringSession(process.env["TELEGRAM_SESSION"]!)
@@ -19,7 +20,7 @@ const client = new TelegramClient(stringSession, apiId, apiHash, {
 
 export async function main() {
     await client.connect();
-    console.log("You should now be connected.");
+    logger.info("Telegram client connected")
     // setup event listener on newMesage for the client
     client.addEventHandler(eventPrint, new NewMessage({
         chats : ["-4268347199", "-1001445992030"]
@@ -37,12 +38,12 @@ async function eventPrint(event : NewMessageEvent) {
     // triage with claassifier
    const prediction =  await predict(message.message)
     if (prediction == 0) {
-        console.log("Message : ", message.message + " classed as non-relevant")
+        logger.info("Message : ", message.message + " classed as non-relevant")
         db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ?, null)').run([message.date, message.message, 0]);
         return
     }
     // find the best stop
     const stop = where(message.message)
-    console.log("Message : ", message.message + " classed as : ", stop)
+    logger.info("Message : ", message.message + " classed as : ", stop)
     db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ? , ?)').run([message.date, message.message, 1, stop.name]);
 }
