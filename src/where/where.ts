@@ -1,6 +1,7 @@
 import {levenshteinEditDistance} from 'levenshtein-edit-distance'
 import { readFileSync } from 'fs';
 import path from "node:path";
+import logger from "../logger/logger";
 
 type Stop = {
     name: string,
@@ -17,11 +18,17 @@ export function where(text: string) {
     words.forEach((word) => {
         stops.forEach((stop : Stop) => {
             const similarity = computeSimilarity(word, stop.name);
+            logger.debug(`Similarity between ${word} and ${stop.name} is ${similarity}`);
             if (similarity > maxSimilarity) {
                 maxSimilarity = similarity;
                 bestStop = stop;
             }
+            logger.debug(`Best stop is ${JSON.stringify(bestStop)}, with similarity ${maxSimilarity}`)
         })})
+    if (maxSimilarity < 0.5) {
+        logger.warn(`No stop found for text: ${text}`)
+        return {name: 'Unknown', line: 'Unknown'}
+    }
     return bestStop
 }
 

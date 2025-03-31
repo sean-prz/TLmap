@@ -11,7 +11,8 @@ async function loadTokenizer() : Promise<PreTrainedTokenizer> {
     return AutoTokenizer.from_pretrained('distilbert-base-uncased');
 }
 async function loadModel(): Promise<PreTrainedModel> {
-    const modelPath = path.resolve(__dirname, '../../model_onnx');
+    const modelDir = process.env.LAMBDA_TASK_ROOT || __dirname; // Fallback for local testing
+    const modelPath = path.join(modelDir, "model_onnx");
     return AutoModelForSequenceClassification.from_pretrained(modelPath,
         {local_files_only: true}
     );

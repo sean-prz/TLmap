@@ -7,6 +7,7 @@ import Database from 'better-sqlite3';
 import {predict} from "../classifier/classifier";
 import {where} from "../where/where";
 import logger from "../logger/logger";
+import {invokeClassifierLambda} from "../lambda/lambda";
 
 const db = new Database('db.sqlite');
 const apiId = Number(process.env["TELEGRAM_API_ID"])!
@@ -36,7 +37,7 @@ export async function main() {
 async function eventPrint(event : NewMessageEvent) {
     const message  = event.message;
     // triage with claassifier
-   const prediction =  await predict(message.message)
+   const prediction =  await invokeClassifierLambda(message.message)
     if (prediction == 0) {
         logger.info("Message : " + message.message + " classed as non-relevant")
         db.prepare('INSERT INTO messages (timestamp, message, relevant, stop) VALUES (?, ?, ?, null)').run([message.date, message.message, 0]);
