@@ -25,7 +25,7 @@ export function where(text: string) {
             }
             logger.debug(`Best stop is ${JSON.stringify(bestStop)}, with similarity ${maxSimilarity}`)
         })})
-    if (maxSimilarity < 0.5) {
+    if (maxSimilarity <= 0.5) {
         logger.warn(`No stop found for text: ${text}`)
         return {name: 'Unknown', line: 'Unknown'}
     }
