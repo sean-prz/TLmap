@@ -1,14 +1,17 @@
-# Plan
-<img width="569" alt="image" src="https://github.com/user-attachments/assets/4840636d-1a45-4385-bde6-13d041779275">
+## The project
+
+This application, hosted on Amazon Web Services, processes reports from traffic agents in public transportation systems. <br>
+It filters and classifies the incoming data to deliver concise and structured information about where inspections or controls have taken place. <br>
+The relational data can be utilized for various purposes, such as generating statistical insights or presenting relevant information to users, for instance, through visualizations like maps.
+
+## Under the hood
+The application operates through the following pipeline:
+	1.	**Report Detection**: A listener runs on an Elastic Cloud Compute (EC2) instance to monitor incoming reports via Telegram.
+	2.	**Message Filtering**: Upon receiving a report, the EC2 instance triggers an AWS Lambda function. This function leverages a trained Large Language Model (LLM) to determine whether the report is relevant.
+	3.	**Classification and Storage**: If deemed relevant, the message is passed to a classifier that utilizes the Levenshtein distance algorithm to refine its categorization. The processed data is then stored in a SQL database for further use.
+ 
+#### The Pipeline 
+<img width="369" alt="image" src="https://github.com/user-attachments/assets/4840636d-1a45-4385-bde6-13d041779275">
 
 
-#### Ressources
 
-Save the models and reusing it : https://www.perplexity.ai/search/can-you-save-a-hugging-face-tr-ML705h0mRY25T7snD4Bigg <br>
-Fix Class imbalance : https://www.perplexity.ai/search/make-this-model-output-more-ne-fKRqzxM2S7aSH4o_cvFw.Q <br>
-
-#### Roadmap
-- Make the UI :
-<img width="648" alt="image" src="https://github.com/user-attachments/assets/afcf6050-fd1e-44b3-9d0d-fdf52ea0f5a9">
-
-_Model is too large to be saved on github, run yourself the classifier/trainer.py to generate the model_
