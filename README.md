@@ -1,6 +1,6 @@
 ## The project
 
-This application, hosted on Amazon Web Services, processes reports from traffic agents in public transportation systems. <br>
+This application, hosted on Amazon Web Services, processes reports from ticket inspectors in the public transportation network of Lausanne. <br>
 It filters and classifies the incoming data to deliver concise and structured information about where inspections or controls have taken place. <br>
 The relational data can be utilized for various purposes, such as generating statistical insights or presenting relevant information to users, for instance, through visualizations like maps.
 
