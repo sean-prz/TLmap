@@ -19,4 +19,4 @@ Example logs :
 2025-04-06T15:32:44.381Z [info] Message: "6 à croisettes direction Ouchy" classed as : Croisettes
 
 2025-04-06T15:47:08.027Z [info] Message: "J'ai oublié mon sac à dos dans le métro ou bus" classed as non-relevant
-``
+```
