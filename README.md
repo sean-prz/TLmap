@@ -13,8 +13,7 @@ The application operates through the following pipeline: <br>
 #### The Pipeline 
 <img width="369" alt="image" src="https://github.com/user-attachments/assets/4840636d-1a45-4385-bde6-13d041779275">
 
-Example logs : 
-
+#### Example logs 
 ```
 2025-04-06T15:32:44.381Z [info] Message: "6 à croisettes direction Ouchy" classed as : Croisettes
 
